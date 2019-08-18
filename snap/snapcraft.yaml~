@@ -8,6 +8,7 @@ grade: stable
 confinement: strict
 apps:
   topcorridafx:
+    
     command: desktop-launch java --module-path=$PATH_TO_FX --add-modules=javafx.controls,javafx.fxml,sqlite.jdbc -classpath ".:$SNAP/sqlite-jdbc-3.27.2.1.jar" -cp $SNAP/jar/TopCorridaFX-0.1.0.jar br.com.topcorridafx.MainApp
     environment:
       JAVA_HOME: $SNAP/usr/lib/jvm/java-11-openjdk-amd64
@@ -17,6 +18,7 @@ apps:
       - x11
       - home
       - desktop
+      - opengl
 
 parts:
   topcorridafx:
@@ -26,11 +28,12 @@ parts:
     build-packages: [openjdk-11-jdk]
     stage-packages: 
       - sqlite3
+      - libcsvjdbc-java
       - libspring-jdbc-java
       - libsqlite3-0
       - libcanberra-gtk-module
       - openjfx
-    after: [desktop-gtk3]
+    after: [desktop-qt5]
 
   javafx-11:
     plugin: dump 
