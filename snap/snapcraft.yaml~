@@ -1,12 +1,11 @@
 name: topcorridafx
-version: '0.1.1'
+version: '0.1.0'
 summary: Top Chegada
 description: |
   Programa feito em Java / JavaFX, voltado para o atletismo.
 base: core18
 grade: stable
 confinement: strict
-
 apps:
   topcorridafx:
     command: desktop-launch java --module-path=$PATH_TO_FX --add-modules=javafx.controls,javafx.fxml,sqlite.jdbc -classpath ".:$SNAP/sqlite-jdbc-3.27.2.1.jar" -cp $SNAP/jar/TopCorridaFX-0.1.0.jar br.com.topcorridafx.MainApp
@@ -15,9 +14,9 @@ apps:
       PATH: $JAVA_HOME/jre/bin:$PATH
       PATH_TO_FX: $SNAP/javafx-sdk-11.0.2/lib
     plugs:
+      - x11
+      - home
       - desktop
-      - wayland
-      - unity7
 
 parts:
   topcorridafx:
@@ -40,35 +39,7 @@ parts:
       - javafx-sdk-11.0.2
       - sqlite-jdbc-3.27.2.1.jar
  
-  desktop-file:
-    plugin: dump
-    source: .
-    organize:
-      'topcorridafx': usr/share/applications/topcorridafx.desktop
-    after:
-      - topcorridafx
 
-  desktop-gtk3:
-    build-packages:
-    - build-essential
-    - libgtk-3-dev
-    make-parameters:
-    - FLAVOR=gtk3
-    plugin: make
-    source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
-    source-subdir: gtk
-    stage-packages:
-    - libxkbcommon0
-    - ttf-ubuntu-font-family
-    - dmz-cursor-theme
-    - light-themes
-    - adwaita-icon-theme
-    - gnome-themes-standard
-    - shared-mime-info
-    - libgtk-3-0
-    - libgdk-pixbuf2.0-0
-    - libglib2.0-bin
-    - libgtk-3-bin
 
  
 

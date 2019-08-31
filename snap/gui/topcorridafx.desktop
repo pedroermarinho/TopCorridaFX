@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=TopCorridaFX
+Comment=Top Chegada
+Icon=${SNAP}/topcorridafx.png
+Exec=topcorridafx %F
+Categories=Education;
+Terminal=false
