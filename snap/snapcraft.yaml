@@ -35,18 +35,13 @@ parts:
 
   javafx-11:
     plugin: dump 
-    source: .
+    source: snap/local
     stage: 
       - javafx-sdk-11.0.2
       - sqlite-jdbc-3.27.2.1.jar
+      - topcorridafx.png
  
-  desktop-file:
-    plugin: dump
-    source: .
-    organize:
-      'topcorridafx': usr/share/applications/topcorridafx.desktop
-    after:
-      - topcorridafx
+
 
   desktop-gtk3:
     build-packages:
