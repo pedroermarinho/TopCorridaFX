@@ -29,7 +29,8 @@ public class SQLiteBase {
 //                e.printStackTrace();
             }
             String user = System.getProperty("user.home");
-            conn= DriverManager.getConnection("jdbc:sqlite:.TopCorridaFX.sqlite");
+            String path=System.getenv().get("SNAP_USER_DATA");
+            conn= DriverManager.getConnection("jdbc:sqlite:"+path+"/TopCorridaFX.sqlite");
             return conn;
         } catch (SQLException ex) {
             ex.printStackTrace();
