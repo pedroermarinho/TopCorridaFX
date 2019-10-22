@@ -9,7 +9,7 @@ confinement: strict
 
 apps:
   topcorridafx:
-    command: desktop-launch java --module-path=$PATH_TO_FX --add-modules=javafx.controls,javafx.fxml,sqlite.jdbc -classpath ".:$SNAP/sqlite-jdbc-3.27.2.1.jar" -cp $SNAP/jar/TopCorridaFX-0.1.0.jar br.com.topcorridafx.MainApp
+    command: desktop-launch java --module-path=$PATH_TO_FX --add-modules=javafx.controls,javafx.fxml,sqlite.jdbc -classpath ".:$SNAP/sqlite-jdbc-3.21.0.1.jar" -cp $SNAP/jar/TopCorridaFX-0.1.0.jar br.com.topcorridafx.MainApp
     environment:
       JAVA_HOME: $SNAP/usr/lib/jvm/java-11-openjdk-amd64
       PATH: $JAVA_HOME/jre/bin:$PATH
@@ -38,34 +38,6 @@ parts:
     source: snap/local
     stage: 
       - javafx-sdk-11.0.2
-      - sqlite-jdbc-3.27.2.1.jar
+      - sqlite-jdbc-3.21.0.1.jar
       - topcorridafx.png
  
-
-
-  desktop-gtk3:
-    build-packages:
-    - build-essential
-    - libgtk-3-dev
-    make-parameters:
-    - FLAVOR=gtk3
-    plugin: make
-    source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
-    source-subdir: gtk
-    stage-packages:
-    - libxkbcommon0
-    - ttf-ubuntu-font-family
-    - dmz-cursor-theme
-    - light-themes
-    - adwaita-icon-theme
-    - gnome-themes-standard
-    - shared-mime-info
-    - libgtk-3-0
-    - libgdk-pixbuf2.0-0
-    - libglib2.0-bin
-    - libgtk-3-bin
-
- 
-
-
-     
