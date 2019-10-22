@@ -9,7 +9,7 @@ confinement: strict
 
 apps:
   topcorridafx:
-    command: desktop-launch java --module-path=$PATH_TO_FX --add-modules=javafx.controls,javafx.fxml,sqlite.jdbc -classpath ".:$SNAP/sqlite-jdbc-3.21.0.1.jar" -cp $SNAP/jar/TopCorridaFX-0.1.0.jar br.com.topcorridafx.MainApp
+    command: java --module-path=$PATH_TO_FX --add-modules=javafx.controls,javafx.fxml,sqlite.jdbc -classpath ".:$SNAP/sqlite-jdbc-3.21.0.1.jar" -cp $SNAP/jar/TopCorridaFX-0.1.0.jar br.com.topcorridafx.MainApp
     environment:
       JAVA_HOME: $SNAP/usr/lib/jvm/java-11-openjdk-amd64
       PATH: $JAVA_HOME/jre/bin:$PATH
@@ -24,14 +24,14 @@ parts:
     plugin: maven 
     source: .
     maven-options: [compile]
-    build-packages: [openjdk-11-jdk]
-    stage-packages: 
+    stage-packages:
+      - openjdk-11-jdk
       - sqlite3
       - libspring-jdbc-java
       - libsqlite3-0
       - libcanberra-gtk-module
       - openjfx
-    after: [desktop-gtk3]
+
 
   javafx-11:
     plugin: dump 
