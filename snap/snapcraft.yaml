@@ -1,5 +1,5 @@
 name: topcorridafx
-version: '0.1.1'
+version: '0.1.2'
 summary: Top Chegada
 description: |
   Programa feito em Java / JavaFX, voltado para o atletismo.
@@ -7,31 +7,13 @@ base: core18
 grade: stable
 confinement: strict
 
-apps:
-  topcorridafx:
-    command: java --module-path=$PATH_TO_FX --add-modules=javafx.controls,javafx.fxml,sqlite.jdbc -classpath ".:$SNAP/sqlite-jdbc-3.21.0.1.jar" -cp $SNAP/jar/TopCorridaFX-0.1.0.jar br.com.topcorridafx.MainApp
-    environment:
-      JAVA_HOME: $SNAP/usr/lib/jvm/java-11-openjdk-amd64
-      PATH: $JAVA_HOME/jre/bin:$PATH
-      PATH_TO_FX: $SNAP/javafx-sdk-11.0.2/lib
-    plugs:
-      - desktop
-      - wayland
-      - unity7
-
 parts:
   topcorridafx:
     plugin: maven 
     source: .
-    maven-options: [compile]
+    maven-options: [install]
     stage-packages:
-      - openjdk-11-jdk
       - sqlite3
-      - libspring-jdbc-java
-      - libsqlite3-0
-      - libcanberra-gtk-module
-      - openjfx
-
 
   javafx-11:
     plugin: dump 
@@ -40,4 +22,20 @@ parts:
       - javafx-sdk-11.0.2
       - sqlite-jdbc-3.21.0.1.jar
       - topcorridafx.png
+      - topcorridafx.sh
  
+apps:
+  topcorridafx:
+    command: desktop-launch $SNAP/topcorridafx.sh
+    extensions: [gnome-3-28]
+    environment:
+      JAVA_HOME: $SNAP/usr/lib/jvm/java-11-openjdk-amd64
+      PATH: $JAVA_HOME/jre/bin:$PATH
+      PATH_TO_FX: $SNAP/javafx-sdk-11.0.2/lib
+    plugs:
+      - desktop
+      - wayland
+      - unity7
+      - home
+      - network
+      - cups-control
